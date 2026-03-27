@@ -1,0 +1,38 @@
+VERSION: 2.0.2
+METHOD:
+  ID: podcasts.dead.list
+  SUMMARY: Dead
+  CANONICAL_ID: podcasts.dead.list
+  DESC: |
+    This call returns all feeds that have been marked dead (`dead` == 1)
+
+    Hourly statistics can also be access at https://public.podcastindex.org/podcastindex_dead_feeds.csv
+    For details, see [Dead Feeds](#get-/static/public/podcastindex_dead_feeds.csv).
+
+    Example: https://api.podcastindex.org/api/1.0/podcasts/dead?pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /podcasts/dead
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

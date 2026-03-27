@@ -1,0 +1,44 @@
+VERSION: 2.0.2
+METHOD:
+  ID: lookup.lookup.list
+  SUMMARY: Lookup
+  CANONICAL_ID: lookup.lookup.list
+  DESC: |
+    Replaces the Apple podcast lookup API but returns data from the Podcast Index database.
+
+    Note: No API key needed for this endpoint.
+
+    Example:
+
+      - Apple: https://itunes.apple.com/lookup?media=podcast&entity=podcast&id=1636765656
+      - PodcastIndex: https://api.podcastindex.org/lookup?entity=podcast&id=1636765656
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /lookup
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+INPUTS:
+  - name: id
+    TYPE: INT
+    REQUIRED: true
+    LOCATION: query
+  - name: entity
+    TYPE: STRING
+    REQUIRED: true
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

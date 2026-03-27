@@ -1,0 +1,46 @@
+VERSION: 2.0.2
+METHOD:
+  ID: value.byfeedid.list
+  SUMMARY: By Feed ID
+  CANONICAL_ID: value.byfeedid.list
+  DESC: |
+    This call returns the information for supporting the podcast via one of the "Value for Value" methods from the
+    PodcastIndex ID.
+
+    Additionally, the value block data can be accessed using static JSON files (updated every 15 minutes).
+
+      - Feeds: https://tracking.podcastindex.org/feedValueBlocks.json
+      - Episodes: https://tracking.podcastindex.org/episodeValueBlocks.json
+
+    Note: No API key needed for this endpoint.
+
+    Examples:
+
+      - https://api.podcastindex.org/api/1.0/value/byfeedid?id=920666&pretty
+      - https://api.podcastindex.org/api/1.0/value/byfeedid?id=779873&pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /value/byfeedid
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+INPUTS:
+  - name: id
+    TYPE: INT
+    REQUIRED: true
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

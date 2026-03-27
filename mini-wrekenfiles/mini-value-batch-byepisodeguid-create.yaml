@@ -1,0 +1,44 @@
+VERSION: 2.0.2
+METHOD:
+  ID: value.batch.byepisodeguid.create
+  SUMMARY: Batch By Episode GUID
+  CANONICAL_ID: value.batch.byepisodeguid.create
+  DESC: |
+    This call returns the information for supporting the podcast episode via one of the "Value for Value" methods from
+    a JSON object containing one or more podcast GUID and one or more episode GUID for the podcast.
+
+    The JSON object key shall be the `podcastguid` from the `podcast:guid` tag in the feed.
+    This value is a unique, global identifier for the podcast. See the namespace spec for
+    [guid](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid) for details.
+
+    The value of the `podcastguid` shall be an array of `episodeguid` values.
+    This is the unique guid specified for the `<item>` in the feed but may not be globally unique.
+
+    Note: No API key needed for this endpoint.
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: POST
+  ENDPOINT: /value/batch/byepisodeguid
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    Content-Type: application/json
+INPUTS:
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+  - name: body
+    TYPE: STRUCT(value_batch_byepisodeguid)
+    REQUIRED: true
+    LOCATION: body
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

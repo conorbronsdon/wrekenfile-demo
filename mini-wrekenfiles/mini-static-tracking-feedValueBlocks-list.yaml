@@ -1,0 +1,26 @@
+VERSION: 2.0.2
+METHOD:
+  ID: static.tracking.feedValueBlocks.list
+  SUMMARY: Feed Value Blocks
+  CANONICAL_ID: static.tracking.feedValueBlocks.list
+  DESC: |
+    Get all feeds with value blocks.
+
+    Access at: https://tracking.podcastindex.org/feedValueBlocks.json
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /static/tracking/feedValueBlocks
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 404)

@@ -1,0 +1,53 @@
+VERSION: 2.0.2
+METHOD:
+  ID: recent.data.list
+  SUMMARY: Recent Data
+  CANONICAL_ID: recent.data.list
+  DESC: |
+    This call returns every new feed and episode added to the index over the past 24 hours in reverse chronological order.
+
+    This is similar to `/recent/feeds` but uses the date the feed was found by the index rather than the feed's
+    internal timestamp.
+
+    Similar data can also be accessed using object storage root url https://tracking.podcastindex.org/current
+    For details, see [Current](#get-/static/tracking/current).
+
+    Examples:
+
+      - https://api.podcastindex.org/api/1.0/recent/data?pretty
+      - https://api.podcastindex.org/api/1.0/recent/data?pretty&max=10
+      - https://api.podcastindex.org/api/1.0/recent/data?pretty&max=10&since=1671164867
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /recent/data
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: max
+    TYPE: INT
+    REQUIRED: false
+    LOCATION: query
+  - name: since
+    TYPE: INT
+    REQUIRED: false
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

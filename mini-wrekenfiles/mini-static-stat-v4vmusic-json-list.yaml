@@ -1,0 +1,32 @@
+VERSION: 2.0.2
+METHOD:
+  ID: static.stat.v4vmusic.json.list
+  SUMMARY: v4v Music Chart JSON
+  CANONICAL_ID: static.stat.v4vmusic.json.list
+  DESC: |
+    Contains the ranking of the music tracks played on podcasts that have been boosted the most over the last 7 days.
+
+    Each entry shows the number of listener boosts sent over this time period. The chart is updated hourly.
+
+    Can be viewed in a browser at https://podcastindex.top/ (https://stats.podcastindex.org/v4vmusic.html).
+
+    View at: https://stats.podcastindex.org/v4vmusic.json
+
+    Also available in [OPML](#get-/static/stats/v4vmusic.opml) and [RSS](#get-/static/stats/v4vmusic.rss).
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /static/stats/v4vmusic.json
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 404)

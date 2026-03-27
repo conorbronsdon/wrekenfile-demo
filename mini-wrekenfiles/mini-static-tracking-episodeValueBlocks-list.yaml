@@ -1,0 +1,26 @@
+VERSION: 2.0.2
+METHOD:
+  ID: static.tracking.episodeValueBlocks.list
+  SUMMARY: Episode Value Blocks
+  CANONICAL_ID: static.tracking.episodeValueBlocks.list
+  DESC: |
+    Get all episodes with value blocks.
+
+    Access at: https://tracking.podcastindex.org/episodeValueBlocks.json
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /static/tracking/episodeValueBlocks
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 404)

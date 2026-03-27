@@ -1,0 +1,56 @@
+VERSION: 2.0.2
+METHOD:
+  ID: episodes.byfeedurl.list
+  SUMMARY: By Feed URL
+  CANONICAL_ID: episodes.byfeedurl.list
+  DESC: |
+    This call returns all the episodes we know about for this feed from the feed URL.
+    Episodes are in reverse chronological order.
+
+    Examples:
+
+      - https://api.podcastindex.org/api/1.0/episodes/byfeedurl?url=https://feeds.theincomparable.com/batmanuniversity&pretty
+      - Includes `persons`: https://api.podcastindex.org/api/1.0/episodes/byfeedurl?url=https://engineered.network/pragmatic/feed/index.xml&pretty
+      - Includes `value`: https://api.podcastindex.org/api/1.0/episodes/byfeedurl?url=https://closing-the-loop.github.io/feed.xml&pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /episodes/byfeedurl
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: url
+    TYPE: STRING
+    REQUIRED: true
+    LOCATION: query
+  - name: since
+    TYPE: INT
+    REQUIRED: false
+    LOCATION: query
+  - name: max
+    TYPE: INT
+    REQUIRED: false
+    LOCATION: query
+  - name: fulltext
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

@@ -1,0 +1,43 @@
+VERSION: 2.0.2
+METHOD:
+  ID: episodes.byid.list
+  SUMMARY: By ID
+  CANONICAL_ID: episodes.byid.list
+  DESC: |
+    Get all the metadata for a single episode by passing its id.
+
+    Example: https://api.podcastindex.org/api/1.0/episodes/byid?id=16795090&pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /episodes/byid
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: id
+    TYPE: INT
+    REQUIRED: true
+    LOCATION: query
+  - name: fulltext
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

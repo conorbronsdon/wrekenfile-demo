@@ -1,0 +1,34 @@
+VERSION: 2.0.2
+METHOD:
+  ID: static.stat.chartData.json.list
+  SUMMARY: v4v Sats
+  CANONICAL_ID: static.stat.chartData.json.list
+  DESC: |
+    Contains the raw data used to populate the graphs at https://stats.podcastindex.org/v4v.
+
+    This is a look at the total [sats](https://www.investopedia.com/terms/s/satoshi.asp) flowing through the Value4Value
+    Lightning podcasting economy over various periods of time.
+
+    We calculate this data based on our visibility as a one percent voluntary split on Podcastindex.org api
+    calls. Therefore, the true numbers could be higher, but they cannot be lower than listed here. This represents our
+    best approximation of how many sats are flowing across the entire ecosystem from listeners to creators, guests (via
+    episode splits), platforms, services and apps.
+
+    View at: https://stats.podcastindex.org/chart-data.json
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /static/stats/chart-data.json
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 404)

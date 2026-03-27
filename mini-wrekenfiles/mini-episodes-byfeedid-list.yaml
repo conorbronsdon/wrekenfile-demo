@@ -1,0 +1,70 @@
+VERSION: 2.0.2
+METHOD:
+  ID: episodes.byfeedid.list
+  SUMMARY: By Feed ID
+  CANONICAL_ID: episodes.byfeedid.list
+  DESC: |
+    This call returns all the episodes we know about for this feed from the PodcastIndex ID.
+    Episodes are in reverse chronological order.
+
+    When using the `enclosure` parameter, only the episode matching the URL is returned.
+
+    Examples:
+
+      - https://api.podcastindex.org/api/1.0/episodes/byfeedid?id=75075&pretty
+      - https://api.podcastindex.org/api/1.0/episodes/byfeedid?id=41504,920666&pretty
+      - https://api.podcastindex.org/api/1.0/episodes/byfeedid?id=75075&newest&pretty
+      - https://api.podcastindex.org/api/1.0/episodes/byfeedid?id=41504,920666&newest&pretty
+      - Includes `persons`: https://api.podcastindex.org/api/1.0/episodes/byfeedid?id=169991&pretty
+      - Includes `value`: https://api.podcastindex.org/api/1.0/episodes/byfeedid?id=4058673&pretty
+      - Using `enclosure`: https://api.podcastindex.org/api/1.0/episodes/byfeedid?id=41504&enclosure=https://op3.dev/e/mp3s.nashownotes.com/NA-1551-2023-04-30-Final.mp3&pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /episodes/byfeedid
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: id
+    TYPE: STRING
+    REQUIRED: true
+    LOCATION: query
+  - name: since
+    TYPE: INT
+    REQUIRED: false
+    LOCATION: query
+  - name: max
+    TYPE: INT
+    REQUIRED: false
+    LOCATION: query
+  - name: enclosure
+    TYPE: STRING
+    REQUIRED: false
+    LOCATION: query
+  - name: fulltext
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+  - name: newest
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

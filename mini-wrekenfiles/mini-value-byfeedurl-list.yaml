@@ -1,0 +1,45 @@
+VERSION: 2.0.2
+METHOD:
+  ID: value.byfeedurl.list
+  SUMMARY: By Feed URL
+  CANONICAL_ID: value.byfeedurl.list
+  DESC: |
+    This call returns the information for supporting the podcast via one of the "Value for Value" methods from feed URL.
+
+    Additionally, the value block data can be accessed using static JSON files (updated every 15 minutes).
+
+      - Feeds: https://tracking.podcastindex.org/feedValueBlocks.json
+      - Episodes: https://tracking.podcastindex.org/episodeValueBlocks.json
+
+    Note: No API key needed for this endpoint.
+
+    Examples:
+
+      - https://api.podcastindex.org/api/1.0/value/byfeedurl?url=https://mp3s.nashownotes.com/pc20rss.xml&pretty
+      - https://api.podcastindex.org/api/1.0/value/byfeedurl?url=https://lespoesiesdheloise.fr/@heloise/feed.xml&pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /value/byfeedurl
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+INPUTS:
+  - name: url
+    TYPE: STRING
+    REQUIRED: true
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

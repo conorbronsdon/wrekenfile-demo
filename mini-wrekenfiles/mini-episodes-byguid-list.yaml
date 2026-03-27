@@ -1,0 +1,60 @@
+VERSION: 2.0.2
+METHOD:
+  ID: episodes.byguid.list
+  SUMMARY: By GUID
+  CANONICAL_ID: episodes.byguid.list
+  DESC: |
+    Get all the metadata for a single episode by passing its guid and the feed id or URL.
+
+    The `feedid`, `feedurl`, or `podcastguid` is required.
+
+    Examples:
+
+      - Search using Podcast Index feed ID: https://api.podcastindex.org/api/1.0/episodes/byguid?guid=PC2084&feedid=920666&pretty
+      - Search using feed URL: https://api.podcastindex.org/api/1.0/episodes/byguid?guid=PC2084&feedurl=http://mp3s.nashownotes.com/pc20rss.xml&pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /episodes/byguid
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: guid
+    TYPE: STRING
+    REQUIRED: true
+    LOCATION: query
+  - name: feedurl
+    TYPE: STRING
+    REQUIRED: false
+    LOCATION: query
+  - name: feedid
+    TYPE: STRING
+    REQUIRED: false
+    LOCATION: query
+  - name: podcastguid
+    TYPE: STRING
+    REQUIRED: false
+    LOCATION: query
+  - name: fulltext
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

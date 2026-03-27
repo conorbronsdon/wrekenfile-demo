@@ -1,0 +1,35 @@
+VERSION: 2.0.2
+METHOD:
+  ID: categories.list.list
+  SUMMARY: List
+  CANONICAL_ID: categories.list.list
+  DESC: |
+    Return all the possible categories supported by the index.
+
+    Example: https://api.podcastindex.org/api/1.0/categories/list?pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /categories/list
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

@@ -1,0 +1,28 @@
+VERSION: 2.0.2
+METHOD:
+  ID: static.public.podcastindexFeeds.db.tgz.list
+  SUMMARY: Feeds Database
+  CANONICAL_ID: static.public.podcastindexFeeds.db.tgz.list
+  DESC: |
+    Compressed database of all non-dead feeds in the Podcast Index database.
+
+    Updated daily. Some attributes excluded. No episodes included.
+
+    Download from: https://public.podcastindex.org/podcastindex_feeds.db.tgz
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /static/public/podcastindex_feeds.db.tgz
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 404)

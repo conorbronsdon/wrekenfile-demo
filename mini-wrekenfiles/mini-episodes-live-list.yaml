@@ -1,0 +1,41 @@
+VERSION: 2.0.2
+METHOD:
+  ID: episodes.live.list
+  SUMMARY: Live
+  CANONICAL_ID: episodes.live.list
+  DESC: |
+    Get all episodes that have been found in the [podcast:liveitem](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#live-item) from the feeds.
+
+    Examples:
+
+      - https://api.podcastindex.org/api/1.0/episodes/live?pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /episodes/live
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: max
+    TYPE: INT
+    REQUIRED: false
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

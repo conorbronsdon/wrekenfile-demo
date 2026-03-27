@@ -1,0 +1,28 @@
+VERSION: 2.0.2
+METHOD:
+  ID: static.stat.hourlyCounts.json.list
+  SUMMARY: Stats Hourly Counts
+  CANONICAL_ID: static.stat.hourlyCounts.json.list
+  DESC: |
+    Report a number of statistics about the feeds in Podcast Index's database. Updated hourly.
+
+    A subset of stats can be retrieved using the API endpoint [stats/current](#get-/stats/current).
+
+    View at: https://stats.podcastindex.org/hourly_counts.json
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /static/stats/hourly_counts.json
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 404)

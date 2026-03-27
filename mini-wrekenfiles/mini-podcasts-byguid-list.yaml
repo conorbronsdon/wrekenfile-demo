@@ -1,0 +1,45 @@
+VERSION: 2.0.2
+METHOD:
+  ID: podcasts.byguid.list
+  SUMMARY: By GUID
+  CANONICAL_ID: podcasts.byguid.list
+  DESC: |
+    This call returns everything we know about the feed from the feed's GUID.
+
+    The GUID is a unique, global identifier for the podcast. See the namespace spec for
+    [guid](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid) for details.
+
+    Examples:
+
+      - https://api.podcastindex.org/api/1.0/podcasts/byguid?guid=9b024349-ccf0-5f69-a609-6b82873eab3c&pretty
+      - Includes `value` and `funding`: https://api.podcastindex.org/api/1.0/podcasts/byguid?guid=9b024349-ccf0-5f69-a609-6b82873eab3c&pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /podcasts/byguid
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: guid
+    TYPE: STRING
+    REQUIRED: true
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

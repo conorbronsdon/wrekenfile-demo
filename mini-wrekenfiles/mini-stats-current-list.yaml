@@ -1,0 +1,41 @@
+VERSION: 2.0.2
+METHOD:
+  ID: stats.current.list
+  SUMMARY: Current
+  CANONICAL_ID: stats.current.list
+  DESC: |
+    Return the most recent index statistics.
+
+    Hourly statistics can also be access at https://stats.podcastindex.org/hourly_counts.json
+    For details, see [Stats Hourly Counts](#get-/static/stats/hourly_counts.json).
+
+    Daily statistics can also be access at https://stats.podcastindex.org/daily_counts.json.
+    For details, see [Stats Daily Counts](#get-/static/stats/daily_counts.json).
+
+    Example: https://api.podcastindex.org/api/1.0/stats/current?pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /stats/current
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS:
+    X-Auth-Key: x-auth-key
+    User-Agent: user-agent
+    X-Auth-Date: x-auth-date
+    Authorization: authorization
+INPUTS:
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)

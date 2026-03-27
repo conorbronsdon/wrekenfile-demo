@@ -1,0 +1,28 @@
+VERSION: 2.0.2
+METHOD:
+  ID: static.public.podcastindexDeadFeeds.csv.list
+  SUMMARY: Dead Feeds
+  CANONICAL_ID: static.public.podcastindexDeadFeeds.csv.list
+  DESC: |
+    Lists all feed Ids that have been marked dead in the Podcast Index database. The list is updated every X hours.
+
+    A subset of stats can be retrieved using the API endpoint [podcasts/dead](#get-/podcasts/dead).
+
+    Download from: https://public.podcastindex.org/podcastindex_dead_feeds.csv
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /static/public/podcastindex_dead_feeds.csv
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 404)

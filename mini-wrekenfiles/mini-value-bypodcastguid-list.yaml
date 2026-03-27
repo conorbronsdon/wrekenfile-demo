@@ -1,0 +1,37 @@
+VERSION: 2.0.2
+METHOD:
+  ID: value.bypodcastguid.list
+  SUMMARY: By Feed GUID
+  CANONICAL_ID: value.bypodcastguid.list
+  DESC: |
+    This call returns the information for supporting the podcast via one of the "Value for Value" methods from podcast GUID.
+
+    Note: No API key needed for this endpoint.
+
+    Example: https://api.podcastindex.org/api/1.0/value/bypodcastguid?guid=917393e3-1b1e-5cef-ace4-edaa54e1f810&pretty
+EXECUTION:
+  KIND: http
+  MODE: async
+  EXECUTION_LEVEL: standalone
+HTTP:
+  METHOD: GET
+  ENDPOINT: /value/bypodcastguid
+  CONTENT_TYPE: application/json
+  ACCEPT: application/json
+  HEADERS: {}
+INPUTS:
+  - name: guid
+    TYPE: STRING
+    REQUIRED: true
+    LOCATION: query
+  - name: pretty
+    TYPE: BOOL
+    REQUIRED: false
+    LOCATION: query
+RETURNS:
+  TYPE: VOID
+ERRORS:
+  - TYPE: ANY
+    WHEN: Client error (HTTP 400)
+  - TYPE: ANY
+    WHEN: Client error (HTTP 401)
