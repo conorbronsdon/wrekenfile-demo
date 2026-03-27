@@ -1,6 +1,19 @@
-# Wrekenfile Converter Demo: Podcast Index API
+<div align="center">
 
-Real-world test of the wrekenfile-converter against the [Podcast Index API](https://podcastindex-org.github.io/docs-api/) (OpenAPI 3.0.2 spec, 50 endpoints, 228 response schemas).
+# Wrekenfile Demo
+
+Real-world demo of the wrekenfile-converter against the Podcast Index API.
+
+[![GitHub stars](https://img.shields.io/github/stars/conorbronsdon/wrekenfile-demo?style=social)](https://github.com/conorbronsdon/wrekenfile-demo/stargazers)
+[![Wreken Spec](https://img.shields.io/badge/Wreken-v2.0.2-purple?style=flat-square)](https://wreken.com)
+[![Swytchcode](https://img.shields.io/badge/by-Swytchcode-orange?style=flat-square)](https://www.swytchcode.com/)
+
+[Converter Repo](https://github.com/conorbronsdon/wrekenfile-converter) | [Wreken Spec](https://wreken.com) | [Podcast Index API](https://podcastindex-org.github.io/docs-api/)
+
+</div>
+
+---
+
 
 ## What's here
 
