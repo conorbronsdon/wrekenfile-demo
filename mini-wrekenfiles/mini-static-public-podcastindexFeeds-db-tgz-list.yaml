@@ -11,7 +11,7 @@ METHOD:
     Download from: https://public.podcastindex.org/podcastindex_feeds.db.tgz
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -20,9 +20,9 @@ HTTP:
   ACCEPT: application/json
   HEADERS: {}
 RETURNS:
-  TYPE: VOID
+  TYPE: ANY
 ERRORS:
   - TYPE: ANY
-    WHEN: Client error (HTTP 400)
+    WHEN: Invalid request (HTTP 400)
   - TYPE: ANY
-    WHEN: Client error (HTTP 404)
+    WHEN: Not found (HTTP 404)

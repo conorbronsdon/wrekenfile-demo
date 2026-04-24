@@ -9,7 +9,7 @@ METHOD:
     Example: https://api.podcastindex.org/api/1.0/episodes/byid?id=16795090&pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -35,9 +35,144 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(episodes.byid.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRUCT(Error401)
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  episodes.byid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: id
+      type: INT
+      REQUIRED: false
+    - name: episode
+      type: STRUCT(episode_object)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episode_object:
+    - name: id
+      type: INT
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false
+    - name: link
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+    - name: guid
+      type: STRING
+      REQUIRED: false
+    - name: datePublished
+      type: INT
+      REQUIRED: false
+    - name: datePublishedPretty
+      type: STRING
+      REQUIRED: false
+    - name: dateCrawled
+      type: INT
+      REQUIRED: false
+    - name: enclosureUrl
+      type: STRING
+      REQUIRED: false
+    - name: enclosureType
+      type: STRING
+      REQUIRED: false
+    - name: enclosureLength
+      type: INT
+      REQUIRED: false
+    - name: duration
+      type: INT
+      REQUIRED: false
+    - name: explicit
+      type: INT
+      REQUIRED: false
+    - name: episode
+      type: INT
+      REQUIRED: false
+    - name: episodeType
+      type: STRING
+      REQUIRED: false
+    - name: season
+      type: INT
+      REQUIRED: false
+    - name: image
+      type: STRING
+      REQUIRED: false
+    - name: imageUrlHash
+      type: INT
+      REQUIRED: false
+    - name: feedItunesId
+      type: INT
+      REQUIRED: false
+    - name: feedImage
+      type: STRING
+      REQUIRED: false
+    - name: feedImageUrlHash
+      type: INT
+      REQUIRED: false
+    - name: feedId
+      type: INT
+      REQUIRED: false
+    - name: feedTitle
+      type: STRING
+      REQUIRED: false
+    - name: feedLanguage
+      type: STRING
+      REQUIRED: false
+    - name: chaptersUrl
+      type: STRING
+      REQUIRED: false
+    - name: transcripts
+      type: ANY
+      REQUIRED: false
+    - name: persons
+      type: ANY
+      REQUIRED: false
+    - name: socialInteract
+      type: ANY
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value)
+      REQUIRED: false
+    - name: soundbite
+      type: STRUCT(soundbite)
+      REQUIRED: false
+    - name: soundbites
+      type: ANY
+      REQUIRED: false
+  value:
+    - name: model
+      type: STRUCT(model_v4v)
+      REQUIRED: false
+    - name: destinations
+      type: ANY
+      REQUIRED: false
+  model_v4v:
+    - name: type
+      type: STRING
+      REQUIRED: false
+    - name: method
+      type: STRING
+      REQUIRED: false
+    - name: suggested
+      type: STRING
+      REQUIRED: false
+  soundbite:
+    - name: startTime
+      type: INT
+      REQUIRED: false
+    - name: duration
+      type: INT
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false

@@ -12,7 +12,7 @@ METHOD:
       - https://api.podcastindex.org/api/1.0/episodes/random?max=2&pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -50,9 +50,26 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(episodes.random.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRUCT(Error401)
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  episodes.random.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: episodes
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false

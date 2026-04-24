@@ -18,7 +18,7 @@ METHOD:
     The format of these prior data sets follows the format described below.
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -27,9 +27,48 @@ HTTP:
   ACCEPT: application/json
   HEADERS: {}
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(static.tracking.current.listResponse200)
 ERRORS:
   - TYPE: ANY
-    WHEN: Client error (HTTP 400)
+    WHEN: Invalid request (HTTP 400)
   - TYPE: ANY
-    WHEN: Client error (HTTP 404)
+    WHEN: Not found (HTTP 404)
+STRUCTS:
+  static.tracking.current.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feedCount
+      type: INT
+      REQUIRED: false
+    - name: itemCount
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: since
+      type: INT
+      REQUIRED: false
+    - name: previousTrackingUrl
+      type: STRING
+      REQUIRED: false
+      comment: URL to previous set of data
+    - name: data
+      type: STRUCT(data_static)
+      REQUIRED: false
+  data_static:
+    - name: nextSince
+      type: INT
+      REQUIRED: false
+      comment: |
+        Value of `since` in next block of data
+    - name: position
+      type: INT
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false

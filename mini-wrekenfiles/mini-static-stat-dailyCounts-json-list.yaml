@@ -11,7 +11,7 @@ METHOD:
     View at: https://stats.podcastindex.org/daily_counts.json
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -20,9 +20,104 @@ HTTP:
   ACCEPT: application/json
   HEADERS: {}
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(static.stat.dailyCounts.json.listResponse200)
 ERRORS:
   - TYPE: ANY
-    WHEN: Client error (HTTP 400)
+    WHEN: Invalid request (HTTP 400)
   - TYPE: ANY
-    WHEN: Client error (HTTP 404)
+    WHEN: Not found (HTTP 404)
+STRUCTS:
+  static.stat.dailyCounts.json.listResponse200:
+    - name: feedCountTotal
+      type: INT
+      REQUIRED: false
+    - name: episodeCountTotal
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithValueBlocks
+      type: INT
+      REQUIRED: false
+    - name: feedsWithFundingTag
+      type: INT
+      REQUIRED: false
+    - name: feedsWithTranscripts
+      type: INT
+      REQUIRED: false
+    - name: episodesWithTranscripts
+      type: INT
+      REQUIRED: false
+    - name: feedsWithChapters
+      type: INT
+      REQUIRED: false
+    - name: episodesWithChapters
+      type: INT
+      REQUIRED: false
+    - name: feedsWithMediumMusic
+      type: INT
+      REQUIRED: false
+    - name: feedsWithMediumVideo
+      type: INT
+      REQUIRED: false
