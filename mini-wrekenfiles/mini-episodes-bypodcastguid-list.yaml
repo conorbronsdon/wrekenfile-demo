@@ -10,7 +10,7 @@ METHOD:
     Example: https://api.podcastindex.org/api/1.0/episodes/bypodcastguid?guid=856cd618-7f34-57ea-9b84-3600f1f65e7f&pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -44,9 +44,30 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(episodes.bypodcastguid.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRUCT(Error401)
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  episodes.bypodcastguid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_url)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  query_url:
+    - name: url
+      type: STRING
+      REQUIRED: false

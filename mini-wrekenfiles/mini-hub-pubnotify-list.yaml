@@ -14,7 +14,7 @@ METHOD:
       - https://api.podcastindex.org/api/1.0/hub/pubnotify?url=https://feeds.theincomparable.com/batmanuniversity&pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -36,9 +36,17 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(hub.pubnotify.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRUCT(Error401)
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  hub.pubnotify.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false

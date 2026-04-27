@@ -15,7 +15,7 @@ METHOD:
     Also available in [OPML](#get-/static/stats/v4vmusic.opml) and [RSS](#get-/static/stats/v4vmusic.rss).
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -24,9 +24,27 @@ HTTP:
   ACCEPT: application/json
   HEADERS: {}
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(static.stat.v4vmusic.json.listResponse200)
 ERRORS:
   - TYPE: ANY
-    WHEN: Client error (HTTP 400)
+    WHEN: Invalid request (HTTP 400)
   - TYPE: ANY
-    WHEN: Client error (HTTP 404)
+    WHEN: Not found (HTTP 404)
+STRUCTS:
+  static.stat.v4vmusic.json.listResponse200:
+    - name: title
+      type: STRING
+      REQUIRED: false
+      comment: Title of music
+    - name: description
+      type: STRING
+      REQUIRED: false
+      comment: Description of object
+    - name: timestamp
+      type: INT
+      REQUIRED: false
+      comment: Date updated
+    - name: items
+      type: OBJECT
+      REQUIRED: false
+      comment: Array of top X music feeds

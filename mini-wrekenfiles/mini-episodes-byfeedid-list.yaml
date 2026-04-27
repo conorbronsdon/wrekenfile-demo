@@ -20,7 +20,7 @@ METHOD:
       - Using `enclosure`: https://api.podcastindex.org/api/1.0/episodes/byfeedid?id=41504&enclosure=https://op3.dev/e/mp3s.nashownotes.com/NA-1551-2023-04-30-Final.mp3&pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -62,9 +62,29 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(episodes.byfeedid.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRUCT(Error401)
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  episodes.byfeedid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: liveItems
+      type: ANY
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: ANY
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false

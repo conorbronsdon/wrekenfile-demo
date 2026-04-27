@@ -12,7 +12,7 @@ METHOD:
       - Includes `value` and `funding`: https://api.podcastindex.org/api/1.0/podcasts/byfeedid?id=169991&pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -34,9 +34,154 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(podcasts.byfeedid.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRUCT(Error401)
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  podcasts.byfeedid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_id)
+      REQUIRED: false
+    - name: feed
+      type: STRUCT(feed_podcast)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  query_id:
+    - name: id
+      type: STRING
+      REQUIRED: false
+  feed_podcast:
+    - name: id
+      type: INT
+      REQUIRED: false
+    - name: podcastGuid
+      type: STRING
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false
+    - name: url
+      type: STRING
+      REQUIRED: false
+    - name: originalUrl
+      type: STRING
+      REQUIRED: false
+    - name: link
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+    - name: author
+      type: STRING
+      REQUIRED: false
+    - name: ownerName
+      type: STRING
+      REQUIRED: false
+    - name: image
+      type: STRING
+      REQUIRED: false
+    - name: artwork
+      type: STRING
+      REQUIRED: false
+    - name: lastUpdateTime
+      type: INT
+      REQUIRED: false
+    - name: lastCrawlTime
+      type: INT
+      REQUIRED: false
+    - name: lastParseTime
+      type: INT
+      REQUIRED: false
+    - name: lastGoodHttpStatusTime
+      type: INT
+      REQUIRED: false
+    - name: lastHttpStatus
+      type: INT
+      REQUIRED: false
+    - name: contentType
+      type: STRING
+      REQUIRED: false
+    - name: itunesId
+      type: INT
+      REQUIRED: false
+    - name: itunesType
+      type: STRING
+      REQUIRED: false
+    - name: generator
+      type: STRING
+      REQUIRED: false
+    - name: language
+      type: STRING
+      REQUIRED: false
+    - name: explicit
+      type: BOOL
+      REQUIRED: false
+    - name: type
+      type: INT
+      REQUIRED: false
+    - name: medium
+      type: STRING
+      REQUIRED: false
+    - name: dead
+      type: INT
+      REQUIRED: false
+    - name: chash
+      type: STRING
+      REQUIRED: false
+    - name: episodeCount
+      type: INT
+      REQUIRED: false
+    - name: crawlErrors
+      type: INT
+      REQUIRED: false
+    - name: parseErrors
+      type: INT
+      REQUIRED: false
+    - name: categories
+      type: STRUCT(categories)
+      REQUIRED: false
+    - name: locked
+      type: INT
+      REQUIRED: false
+    - name: imageUrlHash
+      type: INT
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value)
+      REQUIRED: false
+    - name: funding
+      type: STRUCT(funding)
+      REQUIRED: false
+  value:
+    - name: model
+      type: STRUCT(model_v4v)
+      REQUIRED: false
+    - name: destinations
+      type: ANY
+      REQUIRED: false
+  model_v4v:
+    - name: type
+      type: STRING
+      REQUIRED: false
+    - name: method
+      type: STRING
+      REQUIRED: false
+    - name: suggested
+      type: STRING
+      REQUIRED: false
+  funding:
+    - name: url
+      type: STRING
+      REQUIRED: false
+    - name: message
+      type: STRING
+      REQUIRED: false
