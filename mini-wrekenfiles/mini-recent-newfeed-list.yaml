@@ -14,7 +14,7 @@ METHOD:
       - https://api.podcastindex.org/api/1.0/recent/newfeeds?feedid=2653471&desc&pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -48,9 +48,33 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(recent.newfeed.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRING
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  recent.newfeed.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  Error400:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false

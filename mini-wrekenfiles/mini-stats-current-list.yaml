@@ -15,7 +15,7 @@ METHOD:
     Example: https://api.podcastindex.org/api/1.0/stats/current?pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -33,9 +33,49 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(stats.current.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRING
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  stats.current.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: stats
+      type: STRUCT(stats)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  stats:
+    - name: feedCountTotal
+      type: INT
+      REQUIRED: false
+    - name: episodeCountTotal
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithValueBlocks
+      type: INT
+      REQUIRED: false
+  Error400:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false

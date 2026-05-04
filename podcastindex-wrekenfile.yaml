@@ -25,11 +25,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - term:
           TYPE: STRING
@@ -38,13 +34,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(search.search.listResponse200)
+        RETURNVAR: search_search_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: search.search.list
   lookup.lookup.list:
     SUMMARY: Lookup
@@ -65,11 +65,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -81,13 +77,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(lookup.lookup.listResponse200)
+        RETURNVAR: lookup_lookup_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: lookup.lookup.list
   search.byterm.list:
     SUMMARY: Search Podcasts
@@ -107,11 +107,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - q:
           TYPE: STRING
@@ -144,13 +140,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(search.byterm.listResponse200)
+        RETURNVAR: search_byterm_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: search.byterm.list
   search.bytitle.list:
     SUMMARY: Search Podcasts by Title
@@ -173,11 +173,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - q:
           TYPE: STRING
@@ -206,13 +202,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(search.bytitle.listResponse200)
+        RETURNVAR: search_bytitle_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: search.bytitle.list
   search.byperson.list:
     SUMMARY: Search Episodes by Person
@@ -244,11 +244,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - q:
           TYPE: STRING
@@ -265,13 +261,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(search.byperson.listResponse200)
+        RETURNVAR: search_byperson_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: search.byperson.list
   search.music.byterm.list:
     SUMMARY: Search Music Podcasts
@@ -292,11 +292,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - q:
           TYPE: STRING
@@ -325,13 +321,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(search.music.byterm.listResponse200)
+        RETURNVAR: search_music_byterm_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: search.music.byterm.list
   podcasts.byfeedid.list:
     SUMMARY: By Feed ID
@@ -354,11 +354,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -367,13 +363,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.byfeedid.listResponse200)
+        RETURNVAR: podcasts_byfeedid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.byfeedid.list
   podcasts.byfeedurl.list:
     SUMMARY: By Feed URL
@@ -396,11 +396,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - url:
           TYPE: STRING
@@ -409,13 +405,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.byfeedurl.listResponse200)
+        RETURNVAR: podcasts_byfeedurl_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.byfeedurl.list
   podcasts.byitunesid.list:
     SUMMARY: By iTunes ID
@@ -435,11 +435,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -448,13 +444,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.byitunesid.listResponse200)
+        RETURNVAR: podcasts_byitunesid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.byitunesid.list
   podcasts.byguid.list:
     SUMMARY: By GUID
@@ -480,11 +480,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - guid:
           TYPE: STRING
@@ -493,13 +489,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.byguid.listResponse200)
+        RETURNVAR: podcasts_byguid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.byguid.list
   podcasts.bytag.list:
     SUMMARY: By Tag
@@ -536,11 +536,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - podcast-value:
           TYPE: BOOL
@@ -562,13 +558,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.bytag.listResponse200)
+        RETURNVAR: podcasts_bytag_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.bytag.list
   podcasts.bymedium.list:
     SUMMARY: By Medium
@@ -589,11 +589,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - medium:
           TYPE: STRING
@@ -607,13 +603,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.bymedium.listResponse200)
+        RETURNVAR: podcasts_bymedium_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.bymedium.list
   podcasts.trending.list:
     SUMMARY: Trending
@@ -633,11 +633,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -663,13 +659,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.trending.listResponse200)
+        RETURNVAR: podcasts_trending_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.trending.list
   podcasts.dead.list:
     SUMMARY: Dead
@@ -692,23 +692,23 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - pretty:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.dead.listResponse200)
+        RETURNVAR: podcasts_dead_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.dead.list
   podcasts.batch.byguid.create:
     SUMMARY: Batch By Feed GUID
@@ -732,11 +732,7 @@ METHODS:
         TYPE: ANY
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - pretty:
           TYPE: BOOL
@@ -745,13 +741,17 @@ METHODS:
       - body:
           TYPE: ANY
           LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(podcasts.batch.byguid.createResponse200)
+        RETURNVAR: podcasts_batch_byguid_create
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: podcasts.batch.byguid.create
   episodes.byfeedid.list:
     SUMMARY: By Feed ID
@@ -782,11 +782,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: STRING
@@ -815,13 +811,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(episodes.byfeedid.listResponse200)
+        RETURNVAR: episodes_byfeedid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: episodes.byfeedid.list
   episodes.byfeedurl.list:
     SUMMARY: By Feed URL
@@ -846,11 +846,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - url:
           TYPE: STRING
@@ -871,13 +867,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(episodes.byfeedurl.listResponse200)
+        RETURNVAR: episodes_byfeedurl_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: episodes.byfeedurl.list
   episodes.bypodcastguid.list:
     SUMMARY: By Podcast GUID
@@ -898,11 +898,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - guid:
           TYPE: STRING
@@ -923,13 +919,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(episodes.bypodcastguid.listResponse200)
+        RETURNVAR: episodes_bypodcastguid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: episodes.bypodcastguid.list
   episodes.byitunesid.list:
     SUMMARY: By iTunes ID
@@ -955,11 +955,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -984,13 +980,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(episodes.byitunesid.listResponse200)
+        RETURNVAR: episodes_byitunesid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: episodes.byitunesid.list
   episodes.byid.list:
     SUMMARY: By ID
@@ -1010,11 +1010,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -1027,13 +1023,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(episodes.byid.listResponse200)
+        RETURNVAR: episodes_byid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: episodes.byid.list
   episodes.byguid.list:
     SUMMARY: By GUID
@@ -1058,11 +1058,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - guid:
           TYPE: STRING
@@ -1087,13 +1083,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(episodes.byguid.listResponse200)
+        RETURNVAR: episodes_byguid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: episodes.byguid.list
   episodes.live.list:
     SUMMARY: Live
@@ -1115,11 +1115,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -1129,13 +1125,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(episodes.live.listResponse200)
+        RETURNVAR: episodes_live_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: episodes.live.list
   episodes.random.list:
     SUMMARY: Random
@@ -1158,11 +1158,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -1189,13 +1185,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(episodes.random.listResponse200)
+        RETURNVAR: episodes_random_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: episodes.random.list
   recent.episode.list:
     SUMMARY: Episodes
@@ -1216,11 +1216,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -1243,13 +1239,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(recent.episode.listResponse200)
+        RETURNVAR: recent_episode_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: recent.episode.list
   recent.feed.list:
     SUMMARY: Feeds
@@ -1272,11 +1272,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -1303,13 +1299,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(recent.feed.listResponse200)
+        RETURNVAR: recent_feed_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: recent.feed.list
   recent.newfeed.list:
     SUMMARY: New Feeds
@@ -1334,11 +1334,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -1361,13 +1357,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(recent.newfeed.listResponse200)
+        RETURNVAR: recent_newfeed_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: recent.newfeed.list
   recent.newvaluefeed.list:
     SUMMARY: New Value Feeds
@@ -1387,11 +1387,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -1406,13 +1402,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(recent.newvaluefeed.listResponse200)
+        RETURNVAR: recent_newvaluefeed_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: recent.newvaluefeed.list
   recent.data.list:
     SUMMARY: Recent Data
@@ -1442,11 +1442,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -1461,13 +1457,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(recent.data.listResponse200)
+        RETURNVAR: recent_data_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: recent.data.list
   recent.soundbite.list:
     SUMMARY: Soundbites
@@ -1490,11 +1490,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - max:
           TYPE: INT
@@ -1505,13 +1501,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(recent.soundbite.listResponse200)
+        RETURNVAR: recent_soundbite_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: recent.soundbite.list
   value.byfeedid.list:
     SUMMARY: By Feed ID
@@ -1538,11 +1538,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -1551,13 +1547,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(value.byfeedid.listResponse200)
+        RETURNVAR: value_byfeedid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: value.byfeedid.list
   value.byfeedurl.list:
     SUMMARY: By Feed URL
@@ -1583,11 +1583,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - url:
           TYPE: STRING
@@ -1596,13 +1592,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(value.byfeedurl.listResponse200)
+        RETURNVAR: value_byfeedurl_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: value.byfeedurl.list
   value.bypodcastguid.list:
     SUMMARY: By Feed GUID
@@ -1620,11 +1620,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - guid:
           TYPE: STRING
@@ -1633,13 +1629,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(value.bypodcastguid.listResponse200)
+        RETURNVAR: value_bypodcastguid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: value.bypodcastguid.list
   value.byepisodeguid.list:
     SUMMARY: By Episode GUID
@@ -1667,11 +1667,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - podcastguid:
           TYPE: STRING
@@ -1683,13 +1679,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(value.byepisodeguid.listResponse200)
+        RETURNVAR: value_byepisodeguid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: value.byepisodeguid.list
   value.batch.byepisodeguid.create:
     SUMMARY: Batch By Episode GUID
@@ -1713,29 +1713,29 @@ METHODS:
       CONTENT_TYPE: application/json
       ACCEPT: application/json
       BODY:
-        TYPE: STRUCT(value_batch_byepisodeguid)
+        TYPE: map[STRING][]STRING
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - pretty:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
       - body:
-          TYPE: STRUCT(value_batch_byepisodeguid)
+          TYPE: map[STRING][]STRING
           LOCATION: body
+    RETURNS:
+      - RETURNTYPE: STRUCT(value.batch.byepisodeguid.createResponse200)
+        RETURNVAR: value_batch_byepisodeguid_create
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: value.batch.byepisodeguid.create
   stats.current.list:
     SUMMARY: Current
@@ -1761,23 +1761,23 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - pretty:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(stats.current.listResponse200)
+        RETURNVAR: stats_current_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: stats.current.list
   categories.list.list:
     SUMMARY: List
@@ -1797,23 +1797,23 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - pretty:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(categories.list.listResponse200)
+        RETURNVAR: categories_list_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: categories.list.list
   hub.pubnotify.list:
     SUMMARY: Pub Notify
@@ -1834,11 +1834,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -1852,13 +1848,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(hub.pubnotify.listResponse200)
+        RETURNVAR: hub_pubnotify_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: hub.pubnotify.list
   add.byfeedurl.list:
     SUMMARY: By Feed URL
@@ -1880,11 +1880,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - url:
           TYPE: STRING
@@ -1900,13 +1896,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(add.byfeedurl.listResponse200)
+        RETURNVAR: add_byfeedurl_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: add.byfeedurl.list
   add.byfeedurl.create:
     SUMMARY: By Feed URL
@@ -1929,11 +1929,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - url:
           TYPE: STRING
@@ -1946,13 +1942,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(add.byfeedurl.createResponse200)
+        RETURNVAR: add_byfeedurl_create
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: add.byfeedurl.create
   add.byitunesid.list:
     SUMMARY: By iTunes ID
@@ -1974,11 +1974,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -1988,13 +1984,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(add.byitunesid.listResponse200)
+        RETURNVAR: add_byitunesid_list
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: add.byitunesid.list
   add.byitunesid.create:
     SUMMARY: By iTunes ID
@@ -2017,11 +2017,7 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
     INPUTS:
       - id:
           TYPE: INT
@@ -2031,13 +2027,17 @@ METHODS:
           TYPE: BOOL
           REQUIRED: false
           LOCATION: query
+    RETURNS:
+      - RETURNTYPE: STRUCT(add.byitunesid.createResponse200)
+        RETURNVAR: add_byitunesid_create
+        STATUS: 200
     ERRORS:
-      - TYPE: ANY
+      - TYPE: STRUCT(Error400)
         STATUS: 400
-        WHEN: Client error (HTTP 400)
-      - TYPE: ANY
+        WHEN: Invalid request (HTTP 400)
+      - TYPE: STRING
         STATUS: 401
-        WHEN: Client error (HTTP 401)
+        WHEN: Not authenticated (HTTP 401)
     CANONICAL_ID: add.byitunesid.create
   static.stat.dailyCounts.json.list:
     SUMMARY: Stats Daily Counts
@@ -2055,18 +2055,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(static.stat.dailyCounts.json.listResponse200)
+        RETURNVAR: static_stat_dailyCounts_json_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.stat.dailyCounts.json.list
   static.stat.hourlyCounts.json.list:
     SUMMARY: Stats Hourly Counts
@@ -2084,18 +2084,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(static.stat.hourlyCounts.json.listResponse200)
+        RETURNVAR: static_stat_hourlyCounts_json_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.stat.hourlyCounts.json.list
   static.stat.chartData.json.list:
     SUMMARY: v4v Sats
@@ -2119,18 +2119,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(static.stat.chartData.json.listResponse200)
+        RETURNVAR: static_stat_chartData_json_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.stat.chartData.json.list
   static.stat.v4vmusic.json.list:
     SUMMARY: v4v Music Chart JSON
@@ -2152,18 +2152,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(static.stat.v4vmusic.json.listResponse200)
+        RETURNVAR: static_stat_v4vmusic_json_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.stat.v4vmusic.json.list
   static.stat.v4vmusic.opml.list:
     SUMMARY: v4v Music Chart OPML
@@ -2185,18 +2185,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: static_stat_v4vmusic_opml_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.stat.v4vmusic.opml.list
   static.stat.v4vmusic.rss.list:
     SUMMARY: v4v Music Chart RSS
@@ -2218,18 +2218,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: static_stat_v4vmusic_rss_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.stat.v4vmusic.rss.list
   static.tracking.current.list:
     SUMMARY: Current
@@ -2254,18 +2254,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: STRUCT(static.tracking.current.listResponse200)
+        RETURNVAR: static_tracking_current_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.tracking.current.list
   static.tracking.feedValueBlocks.list:
     SUMMARY: Feed Value Blocks
@@ -2281,18 +2281,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: static_tracking_feedValueBlocks_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.tracking.feedValueBlocks.list
   static.tracking.episodeValueBlocks.list:
     SUMMARY: Episode Value Blocks
@@ -2308,18 +2308,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: "[]ANY"
+        RETURNVAR: static_tracking_episodeValueBlocks_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.tracking.episodeValueBlocks.list
   static.public.podcastindexDeadFeeds.csv.list:
     SUMMARY: Dead Feeds
@@ -2337,18 +2337,18 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: static_public_podcastindexDeadFeeds_csv_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.public.podcastindexDeadFeeds.csv.list
   static.public.podcastindexFeeds.db.tgz.list:
     SUMMARY: Feeds Database
@@ -2366,17 +2366,1271 @@ METHODS:
       ACCEPT: application/json
     EXECUTION:
       KIND: http
-      MODE: async
-    ASYNC:
-      RETURNS: result
-      RESULT:
-        TYPE: VOID
+      MODE: sync
+    RETURNS:
+      - RETURNTYPE: ANY
+        RETURNVAR: static_public_podcastindexFeeds_db_tgz_list
+        STATUS: 200
     ERRORS:
       - TYPE: ANY
         STATUS: 400
-        WHEN: Client error (HTTP 400)
+        WHEN: Invalid request (HTTP 400)
       - TYPE: ANY
         STATUS: 404
-        WHEN: Client error (HTTP 404)
+        WHEN: Not found (HTTP 404)
     CANONICAL_ID: static.public.podcastindexFeeds.db.tgz.list
-STRUCTS: {}
+STRUCTS:
+  query_id:
+    - name: id
+      type: STRING
+      REQUIRED: false
+  model_v4v:
+    - name: type
+      type: STRING
+      REQUIRED: false
+    - name: method
+      type: STRING
+      REQUIRED: false
+    - name: suggested
+      type: STRING
+      REQUIRED: false
+  value:
+    - name: model
+      type: STRUCT(model_v4v)
+      REQUIRED: false
+    - name: destinations
+      type: ANY
+      REQUIRED: false
+  funding:
+    - name: url
+      type: STRING
+      REQUIRED: false
+    - name: message
+      type: STRING
+      REQUIRED: false
+  feed_podcast:
+    - name: id
+      type: INT
+      REQUIRED: false
+    - name: podcastGuid
+      type: STRING
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false
+    - name: url
+      type: STRING
+      REQUIRED: false
+    - name: originalUrl
+      type: STRING
+      REQUIRED: false
+    - name: link
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+    - name: author
+      type: STRING
+      REQUIRED: false
+    - name: ownerName
+      type: STRING
+      REQUIRED: false
+    - name: image
+      type: STRING
+      REQUIRED: false
+    - name: artwork
+      type: STRING
+      REQUIRED: false
+    - name: lastUpdateTime
+      type: INT
+      REQUIRED: false
+    - name: lastCrawlTime
+      type: INT
+      REQUIRED: false
+    - name: lastParseTime
+      type: INT
+      REQUIRED: false
+    - name: lastGoodHttpStatusTime
+      type: INT
+      REQUIRED: false
+    - name: lastHttpStatus
+      type: INT
+      REQUIRED: false
+    - name: contentType
+      type: STRING
+      REQUIRED: false
+    - name: itunesId
+      type: INT
+      REQUIRED: false
+    - name: itunesType
+      type: STRING
+      REQUIRED: false
+    - name: generator
+      type: STRING
+      REQUIRED: false
+    - name: language
+      type: STRING
+      REQUIRED: false
+    - name: explicit
+      type: BOOL
+      REQUIRED: false
+    - name: type
+      type: INT
+      REQUIRED: false
+    - name: medium
+      type: STRING
+      REQUIRED: false
+    - name: dead
+      type: INT
+      REQUIRED: false
+    - name: chash
+      type: STRING
+      REQUIRED: false
+    - name: episodeCount
+      type: INT
+      REQUIRED: false
+    - name: crawlErrors
+      type: INT
+      REQUIRED: false
+    - name: parseErrors
+      type: INT
+      REQUIRED: false
+    - name: categories
+      type: OBJECT
+      REQUIRED: false
+    - name: locked
+      type: INT
+      REQUIRED: false
+    - name: imageUrlHash
+      type: INT
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value)
+      REQUIRED: false
+    - name: funding
+      type: STRUCT(funding)
+      REQUIRED: false
+  query_url:
+    - name: url
+      type: STRING
+      REQUIRED: false
+  feed_itunes:
+    - name: id
+      type: INT
+      REQUIRED: false
+    - name: podcastGuid
+      type: STRING
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false
+    - name: url
+      type: STRING
+      REQUIRED: false
+    - name: originalUrl
+      type: STRING
+      REQUIRED: false
+    - name: link
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+    - name: author
+      type: STRING
+      REQUIRED: false
+    - name: ownerName
+      type: STRING
+      REQUIRED: false
+    - name: image
+      type: STRING
+      REQUIRED: false
+    - name: artwork
+      type: STRING
+      REQUIRED: false
+    - name: lastUpdateTime
+      type: INT
+      REQUIRED: false
+    - name: lastCrawlTime
+      type: INT
+      REQUIRED: false
+    - name: lastParseTime
+      type: INT
+      REQUIRED: false
+    - name: lastGoodHttpStatusTime
+      type: INT
+      REQUIRED: false
+    - name: lastHttpStatus
+      type: INT
+      REQUIRED: false
+    - name: contentType
+      type: STRING
+      REQUIRED: false
+    - name: itunesId
+      type: INT
+      REQUIRED: false
+    - name: generator
+      type: STRING
+      REQUIRED: false
+    - name: language
+      type: STRING
+      REQUIRED: false
+    - name: type
+      type: INT
+      REQUIRED: false
+    - name: dead
+      type: INT
+      REQUIRED: false
+    - name: episodeCount
+      type: INT
+      REQUIRED: false
+    - name: crawlErrors
+      type: INT
+      REQUIRED: false
+    - name: parseErrors
+      type: INT
+      REQUIRED: false
+    - name: categories
+      type: OBJECT
+      REQUIRED: false
+    - name: locked
+      type: INT
+      REQUIRED: false
+    - name: funding
+      type: STRUCT(funding)
+      REQUIRED: false
+  query_guid:
+    - name: guid
+      type: STRING
+      REQUIRED: false
+    - name: id
+      type: STRING
+      REQUIRED: false
+  soundbite:
+    - name: startTime
+      type: INT
+      REQUIRED: false
+    - name: duration
+      type: INT
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false
+  episode_object:
+    - name: id
+      type: INT
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false
+    - name: link
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+    - name: guid
+      type: STRING
+      REQUIRED: false
+    - name: datePublished
+      type: INT
+      REQUIRED: false
+    - name: datePublishedPretty
+      type: STRING
+      REQUIRED: false
+    - name: dateCrawled
+      type: INT
+      REQUIRED: false
+    - name: enclosureUrl
+      type: STRING
+      REQUIRED: false
+    - name: enclosureType
+      type: STRING
+      REQUIRED: false
+    - name: enclosureLength
+      type: INT
+      REQUIRED: false
+    - name: duration
+      type: INT
+      REQUIRED: false
+    - name: explicit
+      type: INT
+      REQUIRED: false
+    - name: episode
+      type: INT
+      REQUIRED: false
+    - name: episodeType
+      type: STRING
+      REQUIRED: false
+    - name: season
+      type: INT
+      REQUIRED: false
+    - name: image
+      type: STRING
+      REQUIRED: false
+    - name: imageUrlHash
+      type: INT
+      REQUIRED: false
+    - name: feedItunesId
+      type: INT
+      REQUIRED: false
+    - name: feedImage
+      type: STRING
+      REQUIRED: false
+    - name: feedImageUrlHash
+      type: INT
+      REQUIRED: false
+    - name: feedId
+      type: INT
+      REQUIRED: false
+    - name: feedTitle
+      type: STRING
+      REQUIRED: false
+    - name: feedLanguage
+      type: STRING
+      REQUIRED: false
+    - name: chaptersUrl
+      type: STRING
+      REQUIRED: false
+    - name: transcripts
+      type: ANY
+      REQUIRED: false
+    - name: persons
+      type: ANY
+      REQUIRED: false
+    - name: socialInteract
+      type: ANY
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value)
+      REQUIRED: false
+    - name: soundbite
+      type: STRUCT(soundbite)
+      REQUIRED: false
+    - name: soundbites
+      type: ANY
+      REQUIRED: false
+  data:
+    - name: position
+      type: INT
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+  query_guid_id:
+    - name: id
+      type: INT
+      REQUIRED: false
+  query_byepisodeguid:
+    - name: podcastguid
+      type: STRING
+      REQUIRED: false
+    - name: episodeguid
+      type: STRING
+      REQUIRED: false
+  value_byepisodeguid:
+    - name: model
+      type: STRUCT(model_v4v)
+      REQUIRED: false
+    - name: destinations
+      type: ANY
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false
+    - name: feedTitle
+      type: STRING
+      REQUIRED: false
+  query_guids:
+    - name: guids
+      type: map[STRING][]STRING
+      REQUIRED: false
+  stats:
+    - name: feedCountTotal
+      type: INT
+      REQUIRED: false
+    - name: episodeCountTotal
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithValueBlocks
+      type: INT
+      REQUIRED: false
+  data_static:
+    - name: nextSince
+      type: INT
+      REQUIRED: false
+      comment: |
+        Value of `since` in next block of data
+    - name: position
+      type: INT
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+  Error400:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  search.search.listResponse200:
+    - name: resultCount
+      type: INT
+      REQUIRED: false
+    - name: results
+      type: ANY
+      REQUIRED: false
+  lookup.lookup.listResponse200:
+    - name: resultCount
+      type: INT
+      REQUIRED: false
+    - name: results
+      type: ANY
+      REQUIRED: false
+  search.byterm.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  search.bytitle.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  search.byperson.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  search.music.byterm.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.byfeedid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_id)
+      REQUIRED: false
+    - name: feed
+      type: STRUCT(feed_podcast)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.byfeedurl.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_url)
+      REQUIRED: false
+    - name: feed
+      type: STRUCT(feed_podcast)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.byitunesid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_id)
+      REQUIRED: false
+    - name: feed
+      type: STRUCT(feed_itunes)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.byguid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_guid)
+      REQUIRED: false
+    - name: feed
+      type: STRUCT(feed_podcast)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.bytag.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: total
+      type: INT
+      REQUIRED: false
+    - name: nextStartAt
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.bymedium.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: medium
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.trending.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: since
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.dead.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  podcasts.batch.byguid.createResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: allFound
+      type: BOOL
+      REQUIRED: false
+    - name: found
+      type: INT
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episodes.byfeedid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: liveItems
+      type: ANY
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: ANY
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episodes.byfeedurl.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_url)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episodes.bypodcastguid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_url)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episodes.byitunesid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: query
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episodes.byid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: id
+      type: INT
+      REQUIRED: false
+    - name: episode
+      type: STRUCT(episode_object)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episodes.byguid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: id
+      type: STRING
+      REQUIRED: false
+    - name: url
+      type: STRING
+      REQUIRED: false
+    - name: podcastGuid
+      type: STRING
+      REQUIRED: false
+    - name: guid
+      type: STRING
+      REQUIRED: false
+    - name: episode
+      type: STRUCT(episode_object)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episodes.live.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  episodes.random.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: episodes
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  recent.episode.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  recent.feed.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: since
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  recent.newfeed.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  recent.newvaluefeed.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: since
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  recent.data.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feedCount
+      type: INT
+      REQUIRED: false
+    - name: itemCount
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: since
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+    - name: nextSince
+      type: INT
+      REQUIRED: false
+    - name: data
+      type: STRUCT(data)
+      REQUIRED: false
+  recent.soundbite.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: items
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  value.byfeedid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_id)
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  value.byfeedurl.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_url)
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  value.bypodcastguid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_guid_id)
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  value.byepisodeguid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_byepisodeguid)
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value_byepisodeguid)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  value.batch.byepisodeguid.createResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_guids)
+      REQUIRED: false
+    - name: value
+      type: ANY
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+    - name: allFound
+      type: BOOL
+      REQUIRED: false
+    - name: found
+      type: INT
+      REQUIRED: false
+  stats.current.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: stats
+      type: STRUCT(stats)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  categories.list.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: count
+      type: INT
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  hub.pubnotify.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  add.byfeedurl.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feedId
+      type: INT
+      REQUIRED: false
+    - name: existed
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  add.byfeedurl.createResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feedId
+      type: INT
+      REQUIRED: false
+    - name: existed
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  add.byitunesid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  add.byitunesid.createResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  static.stat.dailyCounts.json.listResponse200:
+    - name: feedCountTotal
+      type: INT
+      REQUIRED: false
+    - name: episodeCountTotal
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithValueBlocks
+      type: INT
+      REQUIRED: false
+    - name: feedsWithFundingTag
+      type: INT
+      REQUIRED: false
+    - name: feedsWithTranscripts
+      type: INT
+      REQUIRED: false
+    - name: episodesWithTranscripts
+      type: INT
+      REQUIRED: false
+    - name: feedsWithChapters
+      type: INT
+      REQUIRED: false
+    - name: episodesWithChapters
+      type: INT
+      REQUIRED: false
+    - name: feedsWithMediumMusic
+      type: INT
+      REQUIRED: false
+    - name: feedsWithMediumVideo
+      type: INT
+      REQUIRED: false
+  static.stat.hourlyCounts.json.listResponse200:
+    - name: feedCountTotal
+      type: INT
+      REQUIRED: false
+    - name: episodeCountTotal
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithNewEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: paidFeedsWithNewEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes3days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes7days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes10days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes14days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes30days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes60days
+      type: INT
+      REQUIRED: false
+    - name: newEpisodes90days
+      type: INT
+      REQUIRED: false
+    - name: feedsWithValueBlocks
+      type: INT
+      REQUIRED: false
+    - name: feedsWithFundingTag
+      type: INT
+      REQUIRED: false
+    - name: feedsWithTranscripts
+      type: INT
+      REQUIRED: false
+    - name: episodesWithTranscripts
+      type: INT
+      REQUIRED: false
+    - name: feedsWithChapters
+      type: INT
+      REQUIRED: false
+    - name: episodesWithChapters
+      type: INT
+      REQUIRED: false
+    - name: feedsWithMediumMusic
+      type: INT
+      REQUIRED: false
+    - name: feedsWithMediumVideo
+      type: INT
+      REQUIRED: false
+  static.stat.chartData.json.listResponse200:
+    - name: sats
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of sats seen in transactions on the specified date (x)
+    - name: senders
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of senders (supporters) seen in transactions on the specified date (x)
+    - name: txs
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of transactions on the specified date (x)
+    - name: colors
+      type: OBJECT
+      REQUIRED: false
+      comment: Colors used in graphs
+  static.stat.v4vmusic.json.listResponse200:
+    - name: title
+      type: STRING
+      REQUIRED: false
+      comment: Title of music
+    - name: description
+      type: STRING
+      REQUIRED: false
+      comment: Description of object
+    - name: timestamp
+      type: INT
+      REQUIRED: false
+      comment: Date updated
+    - name: items
+      type: OBJECT
+      REQUIRED: false
+      comment: Array of top X music feeds
+  static.tracking.current.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: feedCount
+      type: INT
+      REQUIRED: false
+    - name: itemCount
+      type: INT
+      REQUIRED: false
+    - name: max
+      type: INT
+      REQUIRED: false
+    - name: since
+      type: INT
+      REQUIRED: false
+    - name: previousTrackingUrl
+      type: STRING
+      REQUIRED: false
+      comment: URL to previous set of data
+    - name: data
+      type: STRUCT(data_static)
+      REQUIRED: false

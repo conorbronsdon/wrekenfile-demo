@@ -17,7 +17,7 @@ METHOD:
     View at: https://stats.podcastindex.org/chart-data.json
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -26,9 +26,27 @@ HTTP:
   ACCEPT: application/json
   HEADERS: {}
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(static.stat.chartData.json.listResponse200)
 ERRORS:
   - TYPE: ANY
-    WHEN: Client error (HTTP 400)
+    WHEN: Invalid request (HTTP 400)
   - TYPE: ANY
-    WHEN: Client error (HTTP 404)
+    WHEN: Not found (HTTP 404)
+STRUCTS:
+  static.stat.chartData.json.listResponse200:
+    - name: sats
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of sats seen in transactions on the specified date (x)
+    - name: senders
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of senders (supporters) seen in transactions on the specified date (x)
+    - name: txs
+      type: "[]ANY"
+      REQUIRED: false
+      comment: Array of transactions on the specified date (x)
+    - name: colors
+      type: OBJECT
+      REQUIRED: false
+      comment: Colors used in graphs

@@ -10,7 +10,7 @@ METHOD:
     [guid](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/1.0.md#guid) for details.
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: POST
@@ -33,9 +33,33 @@ INPUTS:
     REQUIRED: true
     LOCATION: body
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(podcasts.batch.byguid.createResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRING
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  podcasts.batch.byguid.createResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: allFound
+      type: BOOL
+      REQUIRED: false
+    - name: found
+      type: INT
+      REQUIRED: false
+    - name: feeds
+      type: ANY
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  Error400:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false

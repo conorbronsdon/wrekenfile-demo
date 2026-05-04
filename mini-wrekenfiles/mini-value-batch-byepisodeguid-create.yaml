@@ -17,7 +17,7 @@ METHOD:
     Note: No API key needed for this endpoint.
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: POST
@@ -32,13 +32,44 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
   - name: body
-    TYPE: STRUCT(value_batch_byepisodeguid)
+    TYPE: map[STRING][]STRING
     REQUIRED: true
     LOCATION: body
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(value.batch.byepisodeguid.createResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRING
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  value.batch.byepisodeguid.createResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_guids)
+      REQUIRED: false
+    - name: value
+      type: ANY
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+    - name: allFound
+      type: BOOL
+      REQUIRED: false
+    - name: found
+      type: INT
+      REQUIRED: false
+  query_guids:
+    - name: guids
+      type: map[STRING][]STRING
+      REQUIRED: false
+  Error400:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false

@@ -21,7 +21,7 @@ METHOD:
       - https://api.podcastindex.org/api/1.0/value/byepisodeguid?podcastguid=c73b1a23-1c28-5edb-94c3-10d1745d0877&episodeguid=bdea6759-a7b6-4c0d-9d1e-acca3133f4a9&pretty
 EXECUTION:
   KIND: http
-  MODE: async
+  MODE: sync
   EXECUTION_LEVEL: standalone
 HTTP:
   METHOD: GET
@@ -43,9 +43,60 @@ INPUTS:
     REQUIRED: false
     LOCATION: query
 RETURNS:
-  TYPE: VOID
+  TYPE: STRUCT(value.byepisodeguid.listResponse200)
 ERRORS:
-  - TYPE: ANY
-    WHEN: Client error (HTTP 400)
-  - TYPE: ANY
-    WHEN: Client error (HTTP 401)
+  - TYPE: STRUCT(Error400)
+    WHEN: Invalid request (HTTP 400)
+  - TYPE: STRING
+    WHEN: Not authenticated (HTTP 401)
+STRUCTS:
+  value.byepisodeguid.listResponse200:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: query
+      type: STRUCT(query_byepisodeguid)
+      REQUIRED: false
+    - name: value
+      type: STRUCT(value_byepisodeguid)
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
+  query_byepisodeguid:
+    - name: podcastguid
+      type: STRING
+      REQUIRED: false
+    - name: episodeguid
+      type: STRING
+      REQUIRED: false
+  value_byepisodeguid:
+    - name: model
+      type: STRUCT(model_v4v)
+      REQUIRED: false
+    - name: destinations
+      type: ANY
+      REQUIRED: false
+    - name: title
+      type: STRING
+      REQUIRED: false
+    - name: feedTitle
+      type: STRING
+      REQUIRED: false
+  model_v4v:
+    - name: type
+      type: STRING
+      REQUIRED: false
+    - name: method
+      type: STRING
+      REQUIRED: false
+    - name: suggested
+      type: STRING
+      REQUIRED: false
+  Error400:
+    - name: status
+      type: STRING
+      REQUIRED: false
+    - name: description
+      type: STRING
+      REQUIRED: false
