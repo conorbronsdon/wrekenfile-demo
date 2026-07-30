@@ -87,9 +87,3 @@ The Podcast Index API is a good converter test case because:
 ## About
 
 Demo created by [Conor Bronsdon](https://github.com/conorbronsdon) as an external test of the wrekenfile-converter. All issues filed and fixed upstream.
-
----
-
-## Disclaimer
-
-*This is an independent personal project, not affiliated with, sponsored by, or endorsed by any company. All views expressed are my own.*
